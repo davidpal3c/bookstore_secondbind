@@ -20,7 +20,7 @@ const AddBook = () => {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-5">
             <h2 className="text-xl mb-4">Add a New Book</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register('title')} placeholder="Title" className="input" />
