@@ -1,5 +1,13 @@
 import { Button } from '@mui/material';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
+const dateToday = () => {
+    const dToday = new Date();
+    const day = dToday.getDate();
+    const month = dToday.getMonth() + 1;
+    const year = dToday.getFullYear();
+    return `${year}-${month}-${day}`;
+}
 
 const handleDownloadCSV = () => {
     fetch('/api/books')
@@ -14,7 +22,7 @@ const handleDownloadCSV = () => {
             const url = URL.createObjectURL(csvBlob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'inventory.csv';
+            a.download = `inventory-${dateToday()}.csv`;
             a.click();
             URL.revokeObjectURL(url);
         });
@@ -23,7 +31,21 @@ const handleDownloadCSV = () => {
 const DownloadCSV: React.FC = () => {
     return (
         <div>
-            <Button variant="contained" onClick={handleDownloadCSV} className="ml-2">Download CSV</Button>
+            <Button
+                variant="contained"
+                onClick={handleDownloadCSV}
+                startIcon={<CloudDownloadIcon />}
+                sx={{
+                    backgroundColor: '#00BFA5',
+                    color: '#FFF',
+                    '&:hover': { backgroundColor: '#164e63' },
+                    borderRadius: '12px',
+                    padding: '10px 20px',
+                    marginX: '10px'
+                }}
+            >
+                Download CSV
+            </Button>
         </div>
     )
 }

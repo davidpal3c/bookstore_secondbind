@@ -14,6 +14,7 @@ const config: Config = {
         backdropBlur: {
           '30': '30px',
         },
+        'custom-teal': '#164e63',
       },
       fontFamily: {
         sans: ['Corben', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],

@@ -1,7 +1,15 @@
 import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
-import DownloadIcon from '@mui/icons-material/Download';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
+
+const dateToday = () => {
+    const dToday = new Date();
+    const day = dToday.getDate();
+    const month = dToday.getMonth() + 1;
+    const year = dToday.getFullYear();
+    return `${year}-${month}-${day}`;
+}
 
 const handleDownloadJSON = () => {
     fetch('/api/books')
@@ -11,7 +19,7 @@ const handleDownloadJSON = () => {
             const url = URL.createObjectURL(jsonBlob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'inventory.json';
+            a.download = `inventory-${dateToday()}.json`;
             a.click();
             URL.revokeObjectURL(url);
         });
@@ -23,12 +31,12 @@ const DownloadJSON: React.FC = () => {
             <Button
                 variant="contained"
                 onClick={handleDownloadJSON}
-                startIcon={<i className="ion-md-cloud-download" style={{ fontSize: '20px', color: '#FFF' }}></i>}
+                startIcon={<CloudDownloadIcon />}
                 sx={{
                     backgroundColor: '#00BFA5',
                     color: '#FFF',
-                    '&:hover': { backgroundColor: '#00796B' },
-                    borderRadius: '50px',
+                    '&:hover': { backgroundColor: '#164e63' },
+                    borderRadius: '12px',
                     padding: '10px 20px',
                 }}
             >

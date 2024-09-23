@@ -10,16 +10,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = () => {
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#23175d' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#5d3fd3' }}>
             <Container>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, borderRadius: 10 }}>
                         Bookstore App
                     </Typography>
-                    <Button color="inherit">Login</Button>
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <MenuIcon />
                     </IconButton>
+                    <Button color="inherit">Login</Button>
                 </Toolbar>
             </Container>
         </AppBar>
