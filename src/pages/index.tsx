@@ -1,3 +1,20 @@
+
+/**
+ * @file index.tsx
+ * @author David Palacios
+ * @date 2024-09-23
+ * @description This file serves as the main entry point for the Bookstore application.
+ *              It renders the main page where users can view, search, add, edit, and delete books.
+ * @functionality
+ * - Fetches and displays a list of books from the backend API.
+ * - Provides a search functionality to filter books by title, author, genre, or ISBN.
+ * - Allows users to add new books via a modal form.
+ * - Allows users to edit existing books via a modal form.
+ * - Allows users to delete books with a confirmation prompt.
+ * @contact davidpal3c@gmail.com
+ */
+
+
 import { useState } from 'react';
 import BookList from '@/components/BookList';
 import Header from '../components/Header';
