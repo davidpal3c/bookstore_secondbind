@@ -46,7 +46,7 @@ Before you begin, ensure you have the following installed on your machine:
 
 1. **Set up environment variables:**
 
-    Create a [`.env`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FUsers%2Fuser%2FProjects%2Fbookstore%2F.env%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%228d284eb3-b1bf-46e4-aaae-e0922aeca9e1%22%5D "/Users/user/Projects/bookstore/.env") file in the root directory of the project and add the following environment variables:
+    Create a [`.env`] file in the root directory of the project and add the following environment variables:
 
     ```env
     DATABASE_URL=your_database_url
@@ -116,5 +116,50 @@ The application uses the following environment variables:
     DATABASE_URL=postgres://username:password@localhost:5432/book_inventory
     ```
 
+## Project Structure
 
+bookstore/
+├── .env                            # Environment variables
+├── .eslintrc.json                  # ESLint configuration
+├── README.md                       # Project documentation
+├── package.json                    # Project dependencies and scripts
+├── package-lock.json               # Locked versions of dependencies
+├── postcss.config.mjs              # PostCSS configuration
+├── next.config.mjs                 # Next.js configuration
+├── tsconfig.json                   # TypeScript configuration
+├── prisma/                         # Prisma database configuration
+│   ├── schema.prisma               # Prisma schema file
+│   ├── migrations/                 # Database migrations
+│   │   ├── migration.sql           # Migration SQL file
+│   │   ├── migration_lock.toml     # Migration lock file
+├── public/                         # Static assets
+│   └── ...                         # Images, icons, etc.
+├── src/                            # Source files
+│   ├── pages/                      # Page components (routes)
+│   │   ├── _app.tsx                # Custom App component
+│   │   ├── index.tsx               # Home page
+│   │   ├── add-book.tsx            # Page for adding a new book
+│   │   ├── api/                    # API routes
+│   │   │   ├── books/              # Book-related API routes
+│   │   │   │   ├── create.ts       # API route for creating a book
+│   │   │   │   ├── delete.ts       # API route for deleting a book
+│   │   │   │   ├── edit.ts         # API route for editing a book
+│   │   │   │   └── index.ts        # API route for fetching books
+│   ├── components/                 # Reusable components
+│   │   ├── BookList.tsx            # Component for listing books
+│   │   ├── ModalAdd.tsx            # Modal for adding a new book
+│   │   ├── ModalEdit.tsx           # Modal for editing an existing book
+│   │   ├── Header.tsx              # Header component
+│   │   ├── DownloadJSON.tsx        # Component for downloading data as JSON
+│   │   ├── SvgIcon.d.ts            # Type definitions for SVG icons
+│   ├── styles/                     # Global and component-specific styles
+│   │   ├── globals.css             # Global CSS styles
+│   ├── utils/                
 
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any changes.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
