@@ -9,6 +9,9 @@ const dateToday = () => {
     return `${year}-${month}-${day}`;
 }
 
+
+// function to handle csv download: fetches api, parse JSON response
+// creates csv rows with headers, creates blob object and url for download 
 const handleDownloadCSV = () => {
     fetch('/api/books')
         .then(response => response.json())
@@ -28,6 +31,8 @@ const handleDownloadCSV = () => {
         });
 };
 
+
+// React functional component for CSV download button 
 const DownloadCSV: React.FC = () => {
     return (
         <div>

@@ -1,12 +1,14 @@
 import AddBook from '../pages/add-book';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 
+// defines properties for modal component
 interface ModalProps {
     open: boolean;
     onClose: () => void;
     onSuccess: (msg: string) => void;
 }
 
+// functional component for adding a new book through modal
 const ModalAdd: React.FC<ModalProps> = ({ open, onClose, onSuccess }) => {
     return (
         <div className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity

@@ -10,12 +10,15 @@ import DownloadCSV from '../components/DownloadCSV';
 
 
 const Index = () => {
+
+    // States to manage : visibility of addBook modal, and error messages
     const [modalAddOpen, setModalAddOpen] = useState(false);
     const [message, setMessage] = useState('');
 
     const handleOpen = () => setModalAddOpen(true);
     const handleClose = () => setModalAddOpen(false);
 
+    // function to handle successful book addition and set message 
     const handleSuccess = (msg: string) => {
         setMessage(msg);
         handleClose();

@@ -11,6 +11,8 @@ const dateToday = () => {
     return `${year}-${month}-${day}`;
 }
 
+// function to handle json download: fetches api, parse JSON response, 
+// creates JSON blob from data, creates url for download 
 const handleDownloadJSON = () => {
     fetch('/api/books')
         .then(response => response.json())
@@ -25,6 +27,7 @@ const handleDownloadJSON = () => {
         });
 };
 
+// React functional component for JSON download button 
 const DownloadJSON: React.FC = () => {
     return (
         <div>

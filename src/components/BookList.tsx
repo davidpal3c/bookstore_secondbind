@@ -4,13 +4,22 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModalEdit from './ModalEdit';
 
+
+// Booklist function component: no inputs, returns Booklist component with 
 const BookList = () => {
+
+
+    // State variables for: list of all books, filtered search list, 
+    //  search input value, book hold for editing, and edit modal. 
+
     const [books, setBooks] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [editingBook, setEditingBook] = useState(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
+
+    // Async function to fetch the list of books from the API
     const fetchBooks = async () => {
         const response = await fetch('/api/books');
         const data = await response.json();
@@ -18,13 +27,16 @@ const BookList = () => {
         setFilteredBooks(data);
     };
 
+    // fetch books when component mounts
     useEffect(() => { fetchBooks() }, []);
 
+    // function to handle editing book info. 
     const handleEdit = (book) => {
         setEditingBook(book);
         setIsEditModalOpen(true);
     };
 
+    // function to handle delete book 
     const handleDelete = async (id) => {
         const confirmDelete = confirm("Are you sure you want to delete this book?");
         if (confirmDelete) {
@@ -40,12 +52,14 @@ const BookList = () => {
         }
     };
 
+    // function to handle successful editing book 
     const handleEditSuccess = (message) => {
         alert(message);
         setIsEditModalOpen(false);
         fetchBooks();
     };
 
+    // function to handles search input change
     const handleSearchChange = (event) => {
         const searchValue = event.target.value.toLowerCase();
         setSearchTerm(searchValue);

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client/extension";
+import { PrismaClient } from "@prisma/client";  // Correct Prisma import
 
 const prisma = new PrismaClient();
 
@@ -10,12 +10,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { title, author, genre, publicationDate, isbn } = req.body;
 
         try {
-            const updateBook = await prisma.book.update({
+            const updatedBook = await prisma.book.update({
                 where: { id: Number(id) },
-                data: { title, author, genre, publicationDate: new Date(publicationDate), isbn },
+                data: {
+                    title,
+                    author,
+                    genre,
+                    publicationDate: new Date(publicationDate),  // Ensure proper date format
+                    isbn
+                },
             });
-            res.status(200).json(updatedBook);
+            res.status(200).json(updatedBook);  // Corrected variable name
         } catch (error) {
+            console.error('Error updating book:', error);  // Add detailed logging for better debugging
             res.status(400).json({ error: 'Error updating book' });
         }
     } else {

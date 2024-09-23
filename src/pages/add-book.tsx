@@ -5,7 +5,7 @@ interface AddBookProps {
 }
 
 const AddBook: React.FC<AddBookProps> = ({ onSuccess }) => {
-    const { register, handleSubmit, reset, setValue } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
         const response = await fetch('api/books/create', {
@@ -21,20 +21,50 @@ const AddBook: React.FC<AddBookProps> = ({ onSuccess }) => {
         }
     };
 
-    const inputStyle = "input rounded mt-3 w-full p-2"
+    const inputStyle = "input rounded mt-3 w-full p-2";
 
     return (
         <div className="p-5">
-            <form onSubmit={handleSubmit(onSubmit)} className="">
-                <input {...register('title')} placeholder="Title" className="input rounded w-full p-2" />
-                <input {...register('author')} placeholder="Author" className={inputStyle} />
-                <input {...register('genre')} placeholder="Genre" className={inputStyle} />
-                <input {...register('publicationDate')} type="date" className={inputStyle} />
-                <input {...register('isbn')} placeholder="ISBN" className={inputStyle} />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                    {...register('title', { required: 'Title is required' })}
+                    placeholder="Title"
+                    className={inputStyle}
+                />
+                {errors.title && <p className="text-red-400">{errors.title.message}</p>}
 
-                <button
-                    className="bg-gray-300 hover:bg-gray-400 text-slate-900 font-semibold py-2 px-4 rounded mt-10 w-full md:w-auto"
-                >
+                <input
+                    {...register('author', { required: 'Author is required' })}
+                    placeholder="Author"
+                    className={inputStyle}
+                />
+                {errors.author && <p className="text-red-400">{errors.author.message}</p>}
+
+                <input
+                    {...register('genre', { required: 'Genre is required' })}
+                    placeholder="Genre"
+                    className={inputStyle}
+                />
+                {errors.genre && <p className="text-red-400">{errors.genre.message}</p>}
+
+                <input
+                    {...register('publicationDate', { required: 'Publication date is required' })}
+                    type="date"
+                    className={inputStyle}
+                />
+                {errors.publicationDate && <p className="text-red-400">{errors.publicationDate.message}</p>}
+
+                <input
+                    {...register('isbn', {
+                        required: 'ISBN is required',
+                        pattern: { value: /^[0-9-]*$/, message: 'Invalid ISBN format' }
+                    })}
+                    placeholder="ISBN"
+                    className={inputStyle}
+                />
+                {errors.isbn && <p className="text-red-400">{errors.isbn.message}</p>}
+
+                <button className="bg-gray-300 hover:bg-gray-400 text-slate-900 font-semibold py-2 px-4 rounded mt-10 w-full md:w-auto">
                     Add Book
                 </button>
             </form>
