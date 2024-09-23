@@ -22,6 +22,7 @@ const AddBook: React.FC<AddBookProps> = ({ onSuccess }) => {
     };
 
     const inputStyle = "input rounded mt-3 w-full p-2";
+    const errorStyle = "text-red-400";
 
     return (
         <div className="p-5">
@@ -31,28 +32,28 @@ const AddBook: React.FC<AddBookProps> = ({ onSuccess }) => {
                     placeholder="Title"
                     className={inputStyle}
                 />
-                {errors.title && <p className="text-red-400">{errors.title.message}</p>}
+                {errors.title && <p className={errorStyle}>{errors.title.message}</p>}
 
                 <input
                     {...register('author', { required: 'Author is required' })}
                     placeholder="Author"
                     className={inputStyle}
                 />
-                {errors.author && <p className="text-red-400">{errors.author.message}</p>}
+                {errors.author && <p className={errorStyle}>{errors.author.message}</p>}
 
                 <input
                     {...register('genre', { required: 'Genre is required' })}
                     placeholder="Genre"
                     className={inputStyle}
                 />
-                {errors.genre && <p className="text-red-400">{errors.genre.message}</p>}
+                {errors.genre && <p className={errorStyle}>{errors.genre.message}</p>}
 
                 <input
                     {...register('publicationDate', { required: 'Publication date is required' })}
                     type="date"
                     className={inputStyle}
                 />
-                {errors.publicationDate && <p className="text-red-400">{errors.publicationDate.message}</p>}
+                {errors.publicationDate && <p className={errorStyle}>{errors.publicationDate.message}</p>}
 
                 <input
                     {...register('isbn', {
@@ -62,7 +63,7 @@ const AddBook: React.FC<AddBookProps> = ({ onSuccess }) => {
                     placeholder="ISBN"
                     className={inputStyle}
                 />
-                {errors.isbn && <p className="text-red-400">{errors.isbn.message}</p>}
+                {errors.isbn && <p className={errorStyle}>{errors.isbn.message}</p>}
 
                 <button className="bg-gray-300 hover:bg-gray-400 text-slate-900 font-semibold py-2 px-4 rounded mt-10 w-full md:w-auto">
                     Add Book

@@ -10,14 +10,14 @@ const BookList = () => {
 
 
     // State variables for: list of all books, filtered search list, 
-    //  search input value, book hold for editing, and edit modal. 
+    //  search input value, book hold for editing, edit modal and sorting.
 
     const [books, setBooks] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [editingBook, setEditingBook] = useState(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
+    const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
 
     // Async function to fetch the list of books from the API
     const fetchBooks = async () => {
@@ -73,6 +73,27 @@ const BookList = () => {
         setFilteredBooks(filtered);
     };
 
+    // handles sort functionality for book inventory table
+    const handleSort = (key) => {
+        let direction = 'ascending';        //default 
+        if (sortConfig.key == key && sortConfig.direction === 'ascending') {
+            direction = 'descending';       // toggles direction if already sorted by key
+        }
+
+        setSortConfig({ key, direction });      //sets sorting config
+
+
+        // sorts filtered books based on selected key and direction
+        const sortedBooks = [...filteredBooks].sort((a, b) => {
+            if (a[key] < b[key]) return direction === 'ascending' ? -1 : 1;
+            if (a[key] > b[key]) return direction === 'ascending' ? 1 : -1;
+            return 0;
+        });
+
+        setFilteredBooks(sortedBooks);
+    }
+
+
     return (
         <>
             {editingBook && (
@@ -97,19 +118,25 @@ const BookList = () => {
             <TableContainer component={Paper} className="bg-[rgba(0,0,0,.1)] rounded-[0.9rem] overflow-x-auto">
                 <Table>
                     <TableHead>
-                        <TableRow className="w-full max-w-7xl rounded-[0.9rem] bg-transparent table-container">
-                            <TableCell className="text-white">Entry ID</TableCell>
-                            <TableCell className="text-white">Title</TableCell>
-                            <TableCell className="text-white">Author</TableCell>
-                            <TableCell className="text-white">Genre</TableCell>
-                            <TableCell className="text-white">ISBN</TableCell>
+                        <TableRow className="w-full max-w-7xl rounded-[0.9rem] bg-transparent table-container cursor-pointer">
+                            {['id', 'title', 'author', 'genre', 'isbn'].map((column) => (
+                                <TableCell
+                                    key={column}
+                                    className="text-white hover:bg-cyan-900"
+                                    onClick={() => handleSort(column)}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    {column.charAt(0).toUpperCase() + column.slice(1)}
+                                    {sortConfig.key === column && (sortConfig.direction === 'ascending' ? ' 🔼' : ' 🔽')}
+                                </TableCell>
+                            ))}
                             <TableCell className="text-white">Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {filteredBooks.length > 0 ? (
                             filteredBooks.map(book => (
-                                <TableRow key={book.id} className="bg-transparent backdrop-blur-md hover:bg-cyan-900 transition-colors cursor-pointer">
+                                <TableRow key={book.id} className="bg-transparent backdrop-blur-md hover:bg-cyan-900 transition-colors">
                                     <TableCell className="text-gray-200">{book.id}</TableCell>
                                     <TableCell className="text-gray-200">{book.title}</TableCell>
                                     <TableCell className="text-gray-200">{book.author}</TableCell>
