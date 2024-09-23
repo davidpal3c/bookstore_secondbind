@@ -13,8 +13,11 @@ const config: Config = {
         foreground: "var(--foreground)",
         backdropBlur: {
           '30': '30px',
-        }
+        },
       },
+      fontFamily: {
+        sans: ['Corben', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+      }
     },
   },
   variants: {

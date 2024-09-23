@@ -1,9 +1,13 @@
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const AddBook = () => {
-    const { register, handleSubmit, reset } = useForm();
-    const [message, setMessage] = useState('');
+interface AddBookProps {
+    onSuccess: (msg: string) => void;
+}
+
+const AddBook: React.FC<AddBookProps> = ({ onSuccess }) => {
+    const { register, handleSubmit, reset, setValue } = useForm();
+    // const [message, setMessage] = useState('');
 
     const onSubmit = async (data) => {
         const response = await fetch('api/books/create', {
@@ -12,10 +16,12 @@ const AddBook = () => {
             body: JSON.stringify(data),
         });
         if (response.ok) {
-            setMessage('Book added successfully');
+            // setMessage('Book added successfully');
+            onSuccess('Book added successfully');
             reset();
         } else {
-            setMessage('Error adding book');
+            // setMessage('Error adding book');
+            onSuccess('Error adding Book!');
         }
     };
 
@@ -30,7 +36,7 @@ const AddBook = () => {
                 <input {...register('isbn')} placeholder="ISBN" className="input" />
                 <button type="submit" className='btn'>Add Book</button>
             </form>
-            {message && <p>{message}</p>}
+            {/* {message && <p>{message}</p>} */}
         </div>
     );
 };

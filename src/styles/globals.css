@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Corben:wght@400;700&display=swap');
+
+
 :root {
     --background: #ffffff;
     --foreground: #171717;
     --text-color: #fffff;
-    --secondary-txt-color: #a5b4fb;
+    --snd-txt-color: #a5b4fb;
     --b-color: #253449;
 }
 
@@ -14,6 +17,7 @@
     :root {
         --background: linear-gradient(to bottom, #0b2035, #183350);
         --foreground: #a5b4fb;
+        da: #251044,
     }
 }
 
@@ -29,4 +33,9 @@ body {
     .text-balance {
         text-wrap: balance;
     }
+}
+
+.table-container {
+    backdrop-filter: blur(30px);
+    /* background-color: rgba(255, 255, 255, 0.08); */
 }
