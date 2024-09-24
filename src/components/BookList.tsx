@@ -76,15 +76,14 @@ const BookList: React.FC = () => {
 
     // Handles sort functionality for book inventory table
     const handleSort = (key: keyof Book) => {
-        let direction = 'ascending';
+        let direction: 'ascending' | 'descending' = 'ascending';                            // Explicitly typing direction
         if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-            direction = 'descending';                           // toggles direction if already sorted by key
+            direction = 'descending';                                                   // Toggles direction if already sorted by key
         }
 
-        setSortConfig({ key, direction }); // sets sorting config
+        setSortConfig({ key, direction });
 
-
-        // sorts filtered books based on selected key and direction
+        // Sorts filtered books based on selected key and direction
         const sortedBooks = [...filteredBooks].sort((a, b) => {
             if (a[key] < b[key]) return direction === 'ascending' ? -1 : 1;
             if (a[key] > b[key]) return direction === 'ascending' ? 1 : -1;
@@ -93,6 +92,7 @@ const BookList: React.FC = () => {
 
         setFilteredBooks(sortedBooks);
     };
+
 
     return (
         <>
