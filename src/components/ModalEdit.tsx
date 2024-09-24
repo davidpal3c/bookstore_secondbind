@@ -1,9 +1,9 @@
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { useEffect } from 'react';
 import { Book } from '@prisma/client';
 
-// properties for the modal component
+// Define properties for the modal component
 interface ModalEditProps {
     open: boolean;
     onClose: () => void;
@@ -11,7 +11,7 @@ interface ModalEditProps {
     book: Book | null; // Make book nullable to handle the initial state
 }
 
-// component for editing book through modal
+// Functional component for editing book through modal
 const ModalEdit: React.FC<ModalEditProps> = ({ open, onClose, onSuccess, book }) => {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<Omit<Book, 'publicationDate'> & { publicationDate: string }>({
         defaultValues: {
@@ -35,7 +35,7 @@ const ModalEdit: React.FC<ModalEditProps> = ({ open, onClose, onSuccess, book })
         }
     }, [book, setValue]);
 
-    const onSubmit = async (data: Omit<Book, 'publicationDate'> & { publicationDate: Date }) => {
+    const onSubmit: SubmitHandler<Omit<Book, 'publicationDate'> & { publicationDate: string }> = async (data) => {
         const payload = {
             ...data,
             publicationDate: new Date(data.publicationDate), // Convert string back to Date
