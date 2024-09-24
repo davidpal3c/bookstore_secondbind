@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 // define book type 
 interface Book {
-    id: string;
+    id: number;
     title: string;
     author: string;
     genre: string;
