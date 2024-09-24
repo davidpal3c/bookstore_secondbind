@@ -1,6 +1,7 @@
 import '../styles/globals.css';
+import { AppProps } from 'next/app';
 
-function BookStoreApp({ Component, pageProps }) {
+function BookStoreApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Component {...pageProps} />
