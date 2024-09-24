@@ -1,18 +1,28 @@
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+// book data definitions
+interface BookData {
+    title: string;
+    author: string;
+    genre: string;
+    publicationDate: string; // Use string for date input
+    isbn: string;
+}
 
 interface AddBookProps {
     onSuccess: (msg: string) => void;
 }
 
 const AddBook: React.FC<AddBookProps> = ({ onSuccess }) => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<BookData>();
 
-    const onSubmit = async (data) => {
+    const onSubmit: SubmitHandler<BookData> = async (data) => {
         const response = await fetch('api/books/create', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         });
+
         if (response.ok) {
             onSuccess('Book added successfully');
             reset();
