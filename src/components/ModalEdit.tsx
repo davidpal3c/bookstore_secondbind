@@ -3,17 +3,7 @@ import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { useEffect } from 'react';
 import { Book } from '@prisma/client';
 
-// define book type 
-// interface Book {
-//     id: number;
-//     title: string;
-//     author: string;
-//     genre: string;
-//     publicationDate: string;
-//     isbn: string;
-// }
-
-// define properties for the modal component
+// properties for the modal component
 interface ModalEditProps {
     open: boolean;
     onClose: () => void;
@@ -21,10 +11,11 @@ interface ModalEditProps {
     book: Book | null; // Make book nullable to handle the initial state
 }
 
-// functional component for editing book through modal
+// component for editing book through modal
 const ModalEdit: React.FC<ModalEditProps> = ({ open, onClose, onSuccess, book }) => {
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<Book>({
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<Omit<Book, 'publicationDate'> & { publicationDate: string }>({
         defaultValues: {
+            id: book?.id || 0,
             title: '',
             author: '',
             genre: '',
@@ -39,17 +30,22 @@ const ModalEdit: React.FC<ModalEditProps> = ({ open, onClose, onSuccess, book })
             setValue('title', book.title);
             setValue('author', book.author);
             setValue('genre', book.genre);
-            setValue('publicationDate', book.publicationDate ? new Date(book.publicationDate).toISOString().substring(0, 10) : '');
+            setValue('publicationDate', book.publicationDate.toISOString().substring(0, 10)); // Format date to YYYY-MM-DD
             setValue('isbn', book.isbn);
         }
     }, [book, setValue]);
 
-    const onSubmit = async (data: Book) => {
+    const onSubmit = async (data: Omit<Book, 'publicationDate'> & { publicationDate: Date }) => {
+        const payload = {
+            ...data,
+            publicationDate: new Date(data.publicationDate), // Convert string back to Date
+        };
+
         try {
             const response = await fetch(`/api/books/${book?.id}/edit`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
+                body: JSON.stringify(payload),
             });
 
             if (response.ok) {
