@@ -5,23 +5,22 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModalEdit from './ModalEdit';
 import { Book } from '@prisma/client';
 
+// type for sort config defined
+type SortConfig = {
+    key: keyof Book | null;
+    direction: 'ascending' | 'descending';
+};
 
-// Booklist function component: no inputs, returns Booklist component with 
-const BookList = () => {
-
-
-    // State variables for: list of all books, filtered search list, 
-    //  search input value, book hold for editing, edit modal and sorting.
-    // Specifies state type.
-
+// function componentfor book list 
+const BookList: React.FC = () => {
     const [books, setBooks] = useState<Book[]>([]);
     const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [editingBook, setEditingBook] = useState<Book | null>(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
+    const [sortConfig, setSortConfig] = useState<SortConfig>({ key: null, direction: 'ascending' });
 
-    // Async function to fetch the list of books from the API
+    // async function to fetch the list of books from API
     const fetchBooks = async () => {
         const response = await fetch('/api/books');
         const data: Book[] = await response.json();
@@ -29,16 +28,16 @@ const BookList = () => {
         setFilteredBooks(data);
     };
 
-    // fetch books when component mounts
-    useEffect(() => { fetchBooks() }, []);
+    // fetches books when component mounts
+    useEffect(() => { fetchBooks(); }, []);
 
-    // function to handle editing book info. 
+    // handles editing book info
     const handleEdit = (book: Book) => {
         setEditingBook(book);
         setIsEditModalOpen(true);
     };
 
-    // function to handle delete book 
+    // handles delete book , id: number as input
     const handleDelete = async (id: number) => {
         const confirmDelete = confirm("Are you sure you want to delete this book?");
         if (confirmDelete) {
@@ -54,14 +53,14 @@ const BookList = () => {
         }
     };
 
-    // function to handle successful editing book - 
+    // handles successful editing of a book , message: string as input
     const handleEditSuccess = (message: string) => {
         alert(message);
         setIsEditModalOpen(false);
         fetchBooks();
     };
 
-    // function to handles search input change - 
+    // handles search input change , event: html input element as input
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const searchValue = event.target.value.toLowerCase();
         setSearchTerm(searchValue);
@@ -75,14 +74,14 @@ const BookList = () => {
         setFilteredBooks(filtered);
     };
 
-    // handles sort functionality for book inventory table
+    // Handles sort functionality for book inventory table
     const handleSort = (key: keyof Book) => {
-        let direction = 'ascending';        //default 
-        if (sortConfig.key == key && sortConfig.direction === 'ascending') {
-            direction = 'descending';       // toggles direction if already sorted by key
+        let direction = 'ascending';
+        if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+            direction = 'descending';                           // toggles direction if already sorted by key
         }
 
-        setSortConfig({ key, direction });      //sets sorting config
+        setSortConfig({ key, direction }); // sets sorting config
 
 
         // sorts filtered books based on selected key and direction
@@ -93,8 +92,7 @@ const BookList = () => {
         });
 
         setFilteredBooks(sortedBooks);
-    }
-
+    };
 
     return (
         <>
@@ -125,7 +123,7 @@ const BookList = () => {
                                 <TableCell
                                     key={column}
                                     className="text-white hover:bg-cyan-900"
-                                    onClick={() => handleSort(column)}
+                                    onClick={() => handleSort(column as keyof Book)} // Cast column to keyof Book
                                     style={{ cursor: 'pointer' }}
                                 >
                                     {column.charAt(0).toUpperCase() + column.slice(1)}
