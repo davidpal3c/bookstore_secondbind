@@ -1,16 +1,17 @@
 import { useForm } from 'react-hook-form';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { useEffect } from 'react';
+import { Book } from '@prisma/client';
 
 // define book type 
-interface Book {
-    id: number;
-    title: string;
-    author: string;
-    genre: string;
-    publicationDate: string;
-    isbn: string;
-}
+// interface Book {
+//     id: number;
+//     title: string;
+//     author: string;
+//     genre: string;
+//     publicationDate: string;
+//     isbn: string;
+// }
 
 // define properties for the modal component
 interface ModalEditProps {
