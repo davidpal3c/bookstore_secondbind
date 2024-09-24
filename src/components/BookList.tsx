@@ -3,6 +3,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModalEdit from './ModalEdit';
+import { Book } from '@prisma/client';
 
 
 // Booklist function component: no inputs, returns Booklist component with 
@@ -11,18 +12,19 @@ const BookList = () => {
 
     // State variables for: list of all books, filtered search list, 
     //  search input value, book hold for editing, edit modal and sorting.
+    // Specifies state type.
 
-    const [books, setBooks] = useState([]);
-    const [filteredBooks, setFilteredBooks] = useState([]);
+    const [books, setBooks] = useState<Book[]>([]);
+    const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [editingBook, setEditingBook] = useState(null);
+    const [editingBook, setEditingBook] = useState<Book | null>(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
 
     // Async function to fetch the list of books from the API
     const fetchBooks = async () => {
         const response = await fetch('/api/books');
-        const data = await response.json();
+        const data: Book[] = await response.json();
         setBooks(data);
         setFilteredBooks(data);
     };
@@ -31,13 +33,13 @@ const BookList = () => {
     useEffect(() => { fetchBooks() }, []);
 
     // function to handle editing book info. 
-    const handleEdit = (book) => {
+    const handleEdit = (book: Book) => {
         setEditingBook(book);
         setIsEditModalOpen(true);
     };
 
     // function to handle delete book 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id: number) => {
         const confirmDelete = confirm("Are you sure you want to delete this book?");
         if (confirmDelete) {
             const response = await fetch(`/api/books/${id}/delete`, {
@@ -52,15 +54,15 @@ const BookList = () => {
         }
     };
 
-    // function to handle successful editing book 
-    const handleEditSuccess = (message) => {
+    // function to handle successful editing book - 
+    const handleEditSuccess = (message: string) => {
         alert(message);
         setIsEditModalOpen(false);
         fetchBooks();
     };
 
-    // function to handles search input change
-    const handleSearchChange = (event) => {
+    // function to handles search input change - 
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const searchValue = event.target.value.toLowerCase();
         setSearchTerm(searchValue);
 
@@ -74,7 +76,7 @@ const BookList = () => {
     };
 
     // handles sort functionality for book inventory table
-    const handleSort = (key) => {
+    const handleSort = (key: keyof Book) => {
         let direction = 'ascending';        //default 
         if (sortConfig.key == key && sortConfig.direction === 'ascending') {
             direction = 'descending';       // toggles direction if already sorted by key
