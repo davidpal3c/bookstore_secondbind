@@ -1,24 +1,25 @@
+import React from 'react';
 import { Button } from '@mui/material';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import { Book } from '@prisma/client'; // Ensure to import the Book type
 
 const dateToday = () => {
     const dToday = new Date();
     const day = dToday.getDate();
-    const month = dToday.getMonth() + 1;
+    const month = dToday.getMonth() + 1; // Months are zero-indexed
     const year = dToday.getFullYear();
     return `${year}-${month}-${day}`;
 }
 
-
-// function to handle csv download: fetches api, parse JSON response
-// creates csv rows with headers, creates blob object and url for download 
+// Function to handle CSV download: fetches API, parses JSON response
+// Creates CSV rows with headers, creates Blob object and URL for download 
 const handleDownloadCSV = () => {
     fetch('/api/books')
         .then(response => response.json())
-        .then(data => {
+        .then((data: Book[]) => {
             const csvRows = [
                 ['Entry ID', 'Title', 'Author', 'Genre', 'ISBN'], // Header
-                ...data.map(book => [book.id, book.title, book.author, book.genre, book.isbn]),
+                ...data.map((book: Book) => [book.id, book.title, book.author, book.genre, book.isbn]), // Annotate book type
             ];
             const csvString = csvRows.map(row => row.join(',')).join('\n');
             const csvBlob = new Blob([csvString], { type: 'text/csv' });
@@ -31,8 +32,7 @@ const handleDownloadCSV = () => {
         });
 };
 
-
-// React functional component for CSV download button 
+// functional component for CSV download button 
 const DownloadCSV: React.FC = () => {
     return (
         <div>
@@ -52,7 +52,7 @@ const DownloadCSV: React.FC = () => {
                 Download CSV
             </Button>
         </div>
-    )
-}
+    );
+};
 
 export default DownloadCSV;
