@@ -52,9 +52,10 @@ Before you begin, ensure you have the following installed on your machine:
     DATABASE_URL=your_database_url
     ```
 
-    Replace `your_database_url` with the actual URL of your database.
+    Replace `your_database_url` with the actual URL of the database: 
+    Contact me to request the database credentials to test the application. 
 
-2. **Run the development server:**
+3. **Run the development server:**
 
     Using npm:
     ```bash
