@@ -33,16 +33,16 @@ const DownloadJSON: React.FC = () => {
             <Button
                 variant="contained"
                 onClick={handleDownloadJSON}
-                startIcon={<CloudDownloadIcon />}
-                sx={{
-                    backgroundColor: '#00BFA5',
-                    color: '#FFF',
-                    '&:hover': { backgroundColor: '#164e63' },
-                    borderRadius: '12px',
-                    padding: '10px 20px',
-                }}
-            >
-                Download JSON
+                className="
+                    bg-teal-500 text-white rounded-lg 
+                    px-3 py-1.5
+                    hover:bg-teal-700
+                    sm:px-4 sm:py-2
+                    md:px-5 md:py-2.5
+                    mr-5
+                ">
+                <CloudDownloadIcon className="mr-2" />
+                JSON
             </Button>
         </div>
     )

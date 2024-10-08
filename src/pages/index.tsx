@@ -50,20 +50,23 @@ const Index = () => {
             </div>
             <div className="flex justify-between my-2 mb-5">
                 <Button variant="contained" onClick={handleOpen}
-                    sx={{
-                        backgroundColor: '#d9757c',
-                        color: '#FFF',
-                        '&:hover': { backgroundColor: '#164e63' },
-                        borderRadius: '12px',
-                        padding: '10px 20px'
-                    }}
-                    startIcon={<AddCircleOutlineIcon />}> <AutoStoriesRoundedIcon /></Button>
+                    className="
+                        bg-cyan-900
+                        rounded-lg
+                        py-2.5 px-5       
+                        space-x-2                 
+                        hover:bg-cyan-600
+                        sm:px-4 sm:py-2
+                        md:px-5 md:py-2.5                         
+                    ">
+                    <AddCircleOutlineIcon />
+                    <AutoStoriesRoundedIcon />
+                </Button>
                 <div className="flex flex-row">
                     <DownloadJSON />
                     <DownloadCSV />
                 </div>
             </div>
-            {/* <AddBook /> */}
             <div className="flex flex-col">
                 <BookList />
             </div>

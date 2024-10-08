@@ -112,7 +112,11 @@ const BookList: React.FC = () => {
                     placeholder="Search by title, author, genre, or ISBN"
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="p-2 border border-gray-300 rounded-md w-full md:w-80"
+                    className="p-2 border 
+                            border-gray-300 
+                            rounded-md 
+                            w-full 
+                            md:w-80"
                 />
             </div>
 
@@ -145,12 +149,14 @@ const BookList: React.FC = () => {
                                     <TableCell className="text-gray-200">{book.isbn}</TableCell>
                                     <TableCell className="flex flex-row">
                                         <Tooltip title="Edit">
-                                            <IconButton onClick={() => handleEdit(book)} sx={{ color: '#64b5f6', '&:hover': { color: '#00BFA5' } }}>
+                                            <IconButton onClick={() => handleEdit(book)}
+                                                className="text-sky-400 hover:text-orange-300">
                                                 <EditIcon />
                                             </IconButton>
                                         </Tooltip>
                                         <Tooltip title="Delete">
-                                            <IconButton onClick={() => handleDelete(book.id)} sx={{ color: '#64b5f6', '&:hover': { color: '#d9757c' } }}>
+                                            <IconButton onClick={() => handleDelete(book.id)} className="text-sky-400 hover:text-rose-400"
+                                            >
                                                 <DeleteIcon />
                                             </IconButton>
                                         </Tooltip>

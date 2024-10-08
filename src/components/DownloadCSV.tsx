@@ -39,17 +39,16 @@ const DownloadCSV: React.FC = () => {
             <Button
                 variant="contained"
                 onClick={handleDownloadCSV}
-                startIcon={<CloudDownloadIcon />}
-                sx={{
-                    backgroundColor: '#00BFA5',
-                    color: '#FFF',
-                    '&:hover': { backgroundColor: '#164e63' },
-                    borderRadius: '12px',
-                    padding: '10px 20px',
-                    marginX: '10px'
-                }}
+                className="
+                    bg-teal-500 text-white rounded-lg 
+                    px-3 py-1.5
+                    hover:bg-teal-700
+                    sm:px-4 sm:py-2
+                    md:px-5 md:py-2.5
+                "
             >
-                Download CSV
+                <CloudDownloadIcon className="mr-2" />
+                CSV
             </Button>
         </div>
     );
