@@ -53,7 +53,7 @@ const Index = () => {
                     className="
                         bg-cyan-900
                         rounded-lg
-                        py-2.5 px-5       
+                        px-3 py-1.5       
                         space-x-2                 
                         hover:bg-cyan-600
                         sm:px-4 sm:py-2

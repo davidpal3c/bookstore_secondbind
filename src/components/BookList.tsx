@@ -121,13 +121,13 @@ const BookList: React.FC = () => {
             </div>
 
             <TableContainer component={Paper} className="bg-[rgba(0,0,0,.1)] rounded-[0.9rem] overflow-x-auto">
-                <Table>
+                <Table className="min-w-full">
                     <TableHead>
-                        <TableRow className="w-full max-w-7xl rounded-[0.9rem] bg-transparent table-container cursor-pointer">
+                        <TableRow className="w-full max-w-7xl rounded-[0.9rem] bg-transparent table-container cursor-pointer grid grid-cols-1 md:table-row md:mb-4">
                             {['id', 'title', 'author', 'genre', 'isbn'].map((column) => (
                                 <TableCell
                                     key={column}
-                                    className="text-white hover:bg-cyan-900"
+                                    className="text-white hover:bg-cyan-900 p-2 md:p-4"
                                     onClick={() => handleSort(column as keyof Book)} // Cast column to keyof Book
                                     style={{ cursor: 'pointer' }}
                                 >
@@ -141,12 +141,12 @@ const BookList: React.FC = () => {
                     <TableBody>
                         {filteredBooks.length > 0 ? (
                             filteredBooks.map(book => (
-                                <TableRow key={book.id} className="bg-transparent backdrop-blur-md hover:bg-cyan-900 transition-colors">
-                                    <TableCell className="text-gray-200">{book.id}</TableCell>
-                                    <TableCell className="text-gray-200">{book.title}</TableCell>
-                                    <TableCell className="text-gray-200">{book.author}</TableCell>
-                                    <TableCell className="text-gray-200">{book.genre}</TableCell>
-                                    <TableCell className="text-gray-200">{book.isbn}</TableCell>
+                                <TableRow key={book.id} className="bg-transparent backdrop-blur-md hover:bg-cyan-900 transition-colors text-xs grid grid-cols-1 md:table-row">
+                                    <TableCell className="text-gray-200 p-2 md:p-4">{book.id}</TableCell>
+                                    <TableCell className="text-gray-200 p-2 md:p-4">{book.title}</TableCell>
+                                    <TableCell className="text-gray-200 p-2 md:p-4">{book.author}</TableCell>
+                                    <TableCell className="text-gray-200 p-2 md:p-4">{book.genre}</TableCell>
+                                    <TableCell className="text-gray-200 p-2 md:p-4">{book.isbn}</TableCell>
                                     <TableCell className="flex flex-row">
                                         <Tooltip title="Edit">
                                             <IconButton onClick={() => handleEdit(book)}
@@ -155,7 +155,7 @@ const BookList: React.FC = () => {
                                             </IconButton>
                                         </Tooltip>
                                         <Tooltip title="Delete">
-                                            <IconButton onClick={() => handleDelete(book.id)} className="text-sky-400 hover:text-rose-400"
+                                            <IconButton onClick={() => handleDelete(book.id)} className="text-sky-400 hover:text-rose-400 text-xs md:text-base"
                                             >
                                                 <DeleteIcon />
                                             </IconButton>

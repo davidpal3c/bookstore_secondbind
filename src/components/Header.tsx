@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = () => {
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#5d3fd3' }}>
+        <AppBar position="static" className="bg-cyan-600">
             <Container>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, borderRadius: 10 }}>

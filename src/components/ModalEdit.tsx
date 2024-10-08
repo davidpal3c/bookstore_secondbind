@@ -68,9 +68,9 @@ const ModalEdit: React.FC<ModalEditProps> = ({ open, onClose, onSuccess, book })
         <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity
             ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         >
-            <div className="bg-slate-200 rounded-lg shadow-lg w-11/12 md:w-1/3">
+            <div className="bg-sky-950 rounded-lg shadow-lg w-11/12 md:w-1/3">
                 <div className="p-4 border-b flex flex-row justify-between">
-                    <h2 className="text-lg font-semibold text-slate-900">Edit Book Details</h2>
+                    <h2 className="text-lg font-semibold text-slate-200">Edit Book Details</h2>
                     <CancelRoundedIcon onClick={onClose} sx={{
                         marginRight: 0.5,
                         marginTop: 0.3,
