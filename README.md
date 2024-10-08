@@ -119,6 +119,10 @@ The application uses the following environment variables:
 
 ## Project Structure
 
+
+
+[![dyCoh4R.png](https://iili.io/dyCoh4R.png)](https://freeimage.host/)
+
 bookstore/
 ├── .env                            # Environment variables
 ├── .eslintrc.json                  # ESLint configuration
