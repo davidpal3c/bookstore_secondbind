@@ -2,7 +2,7 @@
 
 This is a simple bookstore application built with React and TypeScript. It allows users to view, add, edit, and delete books. The application uses a RESTful API for backend operations and Tailwind CSS for styling.
 
-[<img src="![dyzYcU7.png](https://iili.io/dyzYcU7.png)" width="50%">](https://www.youtube.com/watch?v=3L-1iRHLKBI")
+[<img src="https://iili.io/dyzYcU7.png" width="100%">](https://www.youtube.com/watch?v=3L-1iRHLKBI")
 
 
 ## Table of Contents
