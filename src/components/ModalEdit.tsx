@@ -30,7 +30,7 @@ const ModalEdit: React.FC<ModalEditProps> = ({ open, onClose, onSuccess, book })
             setValue('title', book.title);
             setValue('author', book.author);
             setValue('genre', book.genre);
-            setValue('publicationDate', book.publicationDate.toISOString().substring(0, 10)); // Format date to YYYY-MM-DD
+            setValue('publicationDate', book.publicationDate ? new Date(book.publicationDate).toISOString().substring(0, 10) : '');// Format date to YYYY-MM-DD
             setValue('isbn', book.isbn);
         }
     }, [book, setValue]);

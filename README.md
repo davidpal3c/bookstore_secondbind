@@ -52,9 +52,10 @@ Before you begin, ensure you have the following installed on your machine:
     DATABASE_URL=your_database_url
     ```
 
-    Replace `your_database_url` with the actual URL of your database.
+    Replace `your_database_url` with the actual URL of the database: 
+    Contact me to request the database credentials to test the application. 
 
-2. **Run the development server:**
+3. **Run the development server:**
 
     Using npm:
     ```bash
@@ -118,43 +119,7 @@ The application uses the following environment variables:
 
 ## Project Structure
 
-bookstore/
-├── .env                            # Environment variables
-├── .eslintrc.json                  # ESLint configuration
-├── README.md                       # Project documentation
-├── package.json                    # Project dependencies and scripts
-├── package-lock.json               # Locked versions of dependencies
-├── postcss.config.mjs              # PostCSS configuration
-├── next.config.mjs                 # Next.js configuration
-├── tsconfig.json                   # TypeScript configuration
-├── prisma/                         # Prisma database configuration
-│   ├── schema.prisma               # Prisma schema file
-│   ├── migrations/                 # Database migrations
-│   │   ├── migration.sql           # Migration SQL file
-│   │   ├── migration_lock.toml     # Migration lock file
-├── public/                         # Static assets
-│   └── ...                         # Images, icons, etc.
-├── src/                            # Source files
-│   ├── pages/                      # Page components (routes)
-│   │   ├── _app.tsx                # Custom App component
-│   │   ├── index.tsx               # Home page
-│   │   ├── add-book.tsx            # Page for adding a new book
-│   │   ├── api/                    # API routes
-│   │   │   ├── books/              # Book-related API routes
-│   │   │   │   ├── create.ts       # API route for creating a book
-│   │   │   │   ├── delete.ts       # API route for deleting a book
-│   │   │   │   ├── edit.ts         # API route for editing a book
-│   │   │   │   └── index.ts        # API route for fetching books
-│   ├── components/                 # Reusable components
-│   │   ├── BookList.tsx            # Component for listing books
-│   │   ├── ModalAdd.tsx            # Modal for adding a new book
-│   │   ├── ModalEdit.tsx           # Modal for editing an existing book
-│   │   ├── Header.tsx              # Header component
-│   │   ├── DownloadJSON.tsx        # Component for downloading data as JSON
-│   │   ├── SvgIcon.d.ts            # Type definitions for SVG icons
-│   ├── styles/                     # Global and component-specific styles
-│   │   ├── globals.css             # Global CSS styles
-│   ├── utils/                
+![dyCoh4R.png](https://iili.io/dyCoh4R.png)
 
 ## Contributing
 
