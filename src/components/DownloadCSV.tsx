@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, Tooltip } from '@mui/material';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { Book } from '@prisma/client'; // Ensure to import the Book type
 
@@ -36,20 +36,22 @@ const handleDownloadCSV = () => {
 const DownloadCSV: React.FC = () => {
     return (
         <div>
-            <Button
-                variant="contained"
-                onClick={handleDownloadCSV}
-                className="
-                    bg-teal-500 text-white rounded-lg 
-                    px-3 py-1.5
-                    hover:bg-teal-700
-                    sm:px-4 sm:py-2
-                    md:px-5 md:py-2.5
-                "
-            >
-                <CloudDownloadIcon className="mr-2" />
-                CSV
-            </Button>
+            <Tooltip title="Download as CSV file" arrow>
+                <Button
+                    variant="contained"
+                    onClick={handleDownloadCSV}
+                    className="
+                        bg-teal-500 text-white rounded-lg 
+                        px-3 py-1.5
+                        hover:bg-teal-700
+                        sm:px-4 sm:py-2
+                        md:px-5 md:py-2.5
+                    "
+                >
+                    <CloudDownloadIcon className="mr-2" />
+                    CSV
+                </Button>
+            </Tooltip>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, Tooltip } from '@mui/material';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
 
@@ -30,20 +30,22 @@ const handleDownloadJSON = () => {
 const DownloadJSON: React.FC = () => {
     return (
         <div>
-            <Button
-                variant="contained"
-                onClick={handleDownloadJSON}
-                className="
-                    bg-teal-500 text-white rounded-lg 
-                    px-3 py-1.5
-                    hover:bg-teal-700
-                    sm:px-4 sm:py-2
-                    md:px-5 md:py-2.5
-                    mr-5
-                ">
-                <CloudDownloadIcon className="mr-2" />
-                JSON
-            </Button>
+            <Tooltip title="Download as JSON file" arrow>
+                <Button
+                    variant="contained"
+                    onClick={handleDownloadJSON}
+                    className="
+                        bg-indigo-500 text-white rounded-lg 
+                        px-3 py-1.5
+                        hover:bg-indigo-700
+                        sm:px-4 sm:py-2
+                        md:px-5 md:py-2.5
+                        mr-5
+                    ">
+                    <CloudDownloadIcon className="mr-2" />
+                    JSON
+                </Button>
+            </Tooltip>
         </div>
     )
 }

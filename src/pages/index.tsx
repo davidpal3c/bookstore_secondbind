@@ -18,7 +18,7 @@
 import { useState } from 'react';
 import BookList from '@/components/BookList';
 import Header from '../components/Header';
-import { Button } from '@mui/material';
+import { Button, Tooltip } from '@mui/material';
 import ModalAdd from '../components/ModalAdd';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import AutoStoriesRoundedIcon from '@mui/icons-material/AutoStoriesRounded';
@@ -46,22 +46,27 @@ const Index = () => {
             <Header />
             {message && <p className="text-[#a5b4fb]">{message}</p>}
             <div className="flex flex-col items-center mt-10">
-                <h2 className="text-xl font-semibold mb-4 text-foreground">Book Inventory</h2>
+                <h2 className="text-xl font-semibold mb-4 text-purple-400">Book Inventory</h2>
             </div>
             <div className="flex justify-between my-2 mb-5">
-                <Button variant="contained" onClick={handleOpen}
-                    className="
-                        bg-cyan-900
-                        rounded-lg
-                        px-3 py-1.5       
-                        space-x-2                 
-                        hover:bg-cyan-600
-                        sm:px-4 sm:py-2
-                        md:px-5 md:py-2.5                         
-                    ">
-                    <AddCircleOutlineIcon />
-                    <AutoStoriesRoundedIcon />
-                </Button>
+                <Tooltip title="Add new Book" arrow>
+                    <Button variant="contained" onClick={handleOpen}
+                        className="
+                            bg-cyan-900
+                            rounded-lg
+                            px-3 py-1.5       
+                            space-x-2    
+                            flex
+                            justify-center
+                            items-center
+                            hover:bg-cyan-600
+                            sm:px-4 sm:py-2
+                            md:px-5 md:py-2.5                         
+                        ">
+                        <AutoStoriesRoundedIcon />
+                        <p>Add</p>
+                    </Button>
+                </Tooltip>
                 <div className="flex flex-row">
                     <DownloadJSON />
                     <DownloadCSV />

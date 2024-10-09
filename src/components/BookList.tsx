@@ -148,13 +148,13 @@ const BookList: React.FC = () => {
                                     <TableCell className="text-gray-200 p-2 md:p-4">{book.genre}</TableCell>
                                     <TableCell className="text-gray-200 p-2 md:p-4">{book.isbn}</TableCell>
                                     <TableCell className="flex flex-row">
-                                        <Tooltip title="Edit">
+                                        <Tooltip title="Edit" arrow>
                                             <IconButton onClick={() => handleEdit(book)}
                                                 className="text-sky-400 hover:text-orange-300">
                                                 <EditIcon />
                                             </IconButton>
                                         </Tooltip>
-                                        <Tooltip title="Delete">
+                                        <Tooltip title="Delete" arrow>
                                             <IconButton onClick={() => handleDelete(book.id)} className="text-sky-400 hover:text-rose-400 text-xs md:text-base"
                                             >
                                                 <DeleteIcon />
