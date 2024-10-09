@@ -4,7 +4,7 @@ This is a simple bookstore application built with React and TypeScript. It allow
 
 (Click Image for App Demo)
 <br>
-[<img src="https://iili.io/dyzYcU7.png" width="40%">](https://www.youtube.com/watch?v=3L-1iRHLKBI")
+[<img src="https://iili.io/dyzYcU7.png" width="40%">](https://youtu.be/y7TUEN5vjIA")
 
 
 ## Table of Contents
