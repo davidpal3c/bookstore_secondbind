@@ -4,6 +4,7 @@ This is a simple bookstore application built with React and TypeScript. It allow
 
 (Click Image for App Demo)
 <br>
+<!-- [![Bookstore App](https://iili.io/dyzYcU7.png)](https://youtu.be/y7TUEN5vjIA) -->
 [<img src="https://iili.io/dyzYcU7.png" width="40%" target="_blank">](https://youtu.be/y7TUEN5vjIA")
 
 
